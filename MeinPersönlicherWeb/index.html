@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>IndujanV</title>
+  <meta name="description" content="Modernes, responsives Portfolio - Lookalike (original assets)">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#94a3b8; --accent:#7c5cff; --glass: rgba(255,255,255,0.04);
+      --radius:14px; --maxw:1100px; --gap:24px; --ff:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html, body {
+      overscroll-behavior: none;
+    }
+
+    *{box-sizing:border-box}
+   html {
+    height: auto;
+    min-height: 100%;
+    background: linear-gradient(180deg, var(--bg), #071024 140%);
+  }
+
+  body {
+    min-height: 100vh;
+    background: none;
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px;
+    color: #e6eef8;
+    font-family: var(--ff);
+  }
+    .wrap{width:100%; max-width:var(--maxw); display:grid; grid-template-columns: 360px 1fr; gap:var(--gap);}
+
+    /* Die SIDEBAR */
+    .sidebar{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:28px; border-radius:var(--radius); box-shadow:0 6px 30px rgba(2,6,23,0.6);}
+    .avatar{width:96px; height:96px; object-fit: cover; border-radius: 16px;}
+    .avatar img {width: 100%; height: 100%; object-fit: cover; border-radius: 16px;}
+    .name{font-size:20px; font-weight:700; margin:0 0 6px}
+    .role{color:var(--muted); margin:0 0 16px} 
+    .tags{display:flex; gap:8px; flex-wrap:wrap}
+    .tag{padding:6px 10px; background:var(--glass); border-radius:999px; color:var(--muted); font-size:13px}
+
+    .sidebar hr{border:none; height:1px; background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.03)); margin:18px 0}
+    .meta{display:flex; gap:10px; flex-direction:column}
+    .meta-item{display:flex; justify-content:space-between; color:var(--muted); font-size:14px}
+
+    /* MAIN */
+    .main{display:flex; flex-direction:column; gap:20px}
+    .hero{padding:26px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:var(--radius); box-shadow:0 6px 30px rgba(2,6,23,0.45)}
+    .hero h1{margin:0 0 8px; font-size:22px}
+    .hero p{margin:0; color:var(--muted)}
+
+    .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02)); padding:18px; border-radius:12px; box-shadow: 0 4px 18px rgba(2,6,23,0.55)}
+    .card h3{margin:0 0 10px}
+    .card p{margin:0; color:var(--muted); font-size:14px}
+
+    /* Titel-Link-Styling */
+    .nav-link {
+      color: #e6eef8;
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+    .nav-link:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .projects{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+    .project{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.02)); padding:12px; border-radius:10px; text-align:left}
+    .project .title{font-weight:600}
+    .project .desc{color:var(--muted); font-size:13px}
+
+    .footer{display:flex; gap:12px; align-items:center; justify-content:flex-end}
+    .btn{background:linear-gradient(90deg,var(--accent),#39b9ff); color:white; padding:10px 14px; border-radius:10px; font-weight:600; border:none; cursor:pointer}
+
+    @media (max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .grid{grid-template-columns:1fr}
+      .projects{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:520px){
+      .projects{grid-template-columns:1fr}
+      .avatar{width:74px;height:74px;font-size:22px}
+    }
+
+    .fade-in{animation:fadeIn .7s ease both}
+    @keyframes fadeIn{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none}}
+
+.consent-banner {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0; /* initial transparent */
+  transition: opacity 0.3s ease;
+}
+
+.consent-box {
+  background: #0b1220;
+  color: #e6eef8;
+  max-width: 420px;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  transform: translateY(30px);
+  transition: transform 0.45s cubic-bezier(.2,.8,.2,1);
+}
+
+.consent-banner{
+  animation: fadeBg 0.35s ease forwards;
+}
+.consent-box{
+  animation: slideUp 0.45s cubic-bezier(.2,.8,.2,1);
+}
+
+
+
+/* Animation */
+.consent-banner{
+  animation: fadeBg 0.35s ease forwards;
+}
+
+.consent-box{
+  animation: slideUp 0.45s cubic-bezier(.2,.8,.2,1);
+}
+
+/* Mobile Optimierung */
+@media (max-width: 600px){
+  .consent-box{
+    width: calc(100% - 32px);
+    padding: 20px;
+    border-radius: 16px;
+  }
+}
+
+/* Keyframes */
+@keyframes slideUp{
+  from{
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to{
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeBg{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+
+  </style>
+</head>
+<body>
+  <canvas id="hackingBackground"></canvas>
+  <div class="wrap">
+    <aside class="sidebar fade-in">
+      <div class="avatar" ><img src="favicon.png" alt="Avatar"></div>
+      <h2 class="name">Indujan Vijayarajah</h2>
+      <div class="role">Ethische Hacking · Freak</div>
+      <div class="tags">
+        <div class="tag">EH-Tools</div>
+        <div class="tag">PCB design</div>
+        <div class="tag">Löten</div>
+        <div class="tag">3D Druck</div>
+        <div class="tag">Kali Linux</div>
+      </div>
+
+      <hr />
+      <div class="meta">
+        <div class="meta-item"><span>Standort</span><strong>Zürich, CH</strong></div>
+        <div class="meta-item"><span>Erfahrung</span><strong>Genug</strong></div>
+        <div class="meta-item"><span>Kontakt</span><strong>Indujanv.030108@gmail.com</strong></div>
+      </div>
+
+      <hr />
+      <div style="margin-top:10px; color:var(--muted); font-size:13px">Es geht tatsächlich um das Wissen und die Fähigkeiten einer Person – nicht nur um die Noten</div>
+      <div style="margin-top:6px; color:var(--muted); font-size:13px">Noten sind eigentlich nur ein <strong>Messversuch</strong>, um dieses Wissen irgendwie sichtbar und vergleichbar zu machen. Aber sie zeigen längst nicht alles . . .</div>
+    </aside>
+
+    <main class="main">
+      <section class="hero fade-in">
+        <h1>Willkommen — Ich gestalte digitale Produkte</h1>
+        <p>Schlanker, schneller, zugänglicher Code. Hier findest du Projekte, Skills und Kontaktmöglichkeiten.</p>
+      </section>
+
+      <section class="grid">
+        <article class="card fade-in">
+          <h3><a class="nav-link" href="ueber-mich.html" >Über mich ⬅️</a></h3>
+          <p>Ich bau gern Interfaces, die intuitiv sind. Fokus auf Performance, Responsiveness und klare Designs.</p>
+        </article>
+        <article class="card fade-in">
+          <h3><a class="nav-link" href="leistungen.html" >Leistungen ⬅️</a></h3>
+          <p>UI/UX Design, Prototyping, Frontend-Entwicklung, Consulting.</p>
+        </article>
+      </section>
+
+      <section>
+        <h2 style="margin:6px 0 12px"><a class="nav-link" href="meine-projekte.html" >Projekte ⬅️</a></h2>
+        <div class="projects">
+          <div class="project fade-in">
+            <div class="title">ESP32 Marauder</div>
+            <div class="desc">Ein Marauder für das ESP32-Board, der verschiedene Netzwerkprotokolle "unterstützt" von JustCallMeKoko.</div>
+          </div>
+          <div class="project fade-in">
+            <div class="title">ESP32 Blue-Jammer</div>
+            <div class="desc">Ein Blue-Jammer für das ESP32-Board, der verschiedene Bluetooth-Protokolle "unterstützt" von Emensta.</div>
+          </div>
+          <div class="project fade-in">
+            <div class="title">WiFiX-DualBand-Deauther</div>
+            <div class="desc">Ein leistungsstarkes Werkzeug, mit dem Sie Deauthentifizierungsangriffe auf sowohl 2,4-GHz- als auch 5,8-GHz-WiFi-Bänder durchführen können. Von Emensta & ASP-29</div>
+          </div>
+          <div class="project fade-in">
+            <div class="title">NRF-BOX</div>
+            <div class="desc">Ein vielseitiges Tool zum Analysieren und Stören von NRF24L01+-Funkkommunikationen. Von CiferTech</div>
+          </div>
+          <div class="project fade-in">
+            <div class="title">Bruce Project by Pr3y</div>
+            <div class="desc">Ein vielseitiges Tool zum Analysieren und Stören von NRF24L01+-Funkkommunikationen. Von CiferTech</div>
+          </div>
+          <div class="project fade-in">
+            <div class="title">EMP-Jammer</div>
+            <div class="desc"><strong>Kommt Bald</strong>
+              Ein EMP-Jammer ist ein Gerät, das starke elektromagnetische Signale aussendet, um andere elektronische Geräte zu stören oder lahmzulegen.</div>
+          </div>
+          <div class="project fade-in">
+            <div class="title">Bad USB mit RB Pi Pico</div>
+            <div class="desc"><strong>Kommt Bald</strong>
+              Ein BadUSB ist ein USB-Gerät, das sich als etwas Harmloses (z. B. eine Tastatur) ausgibt, aber im Hintergrund schädliche Befehle ausführen kann.</div>
+          </div>
+          <div class="project fade-in">
+            <div class="title">USB Killer</div>
+            <div class="desc"><strong>Kommt Bald</strong>
+              Ein USB Killer ist ein bösartiges USB-Gerät, das beim Einstecken eine hohe elektrische Spannung in einen Computer zurückschickt und dadurch die Hardware zerstören kann.</div>
+          </div>
+          <div class="project fade-in">
+            <div class="title">CyberDeck</div>
+            <div class="desc"><strong>Kommt Bald</strong>
+              Ein Cyberdeck ist ein meist selbstgebauter, portabler Mini-Computer im Cyberpunk-Stil. Er kombiniert oft Display, Tastatur und verschiedene Technik-Module in einem kompakten Gehäuse und wird für Experimente, Programmieren oder kreative Technikprojekte genutzt.</div>
+          </div>
+          <div class="project fade-in">
+            <div class="title">HomeLab</div>
+            <div class="desc"><strong>Kommt Bald</strong>
+              Ein HomeLab ist ein Labor für Experimente mit Hardware, Software und elektronischen Geräten. Es dient als Ort zur Forschung, Entwicklung und Testung von Ideen und Projekten.</div>
+          </div>
+          <div class="project fade-in">
+            <div class="title">Es kommen noch weitere!!!</div>
+            <div class="desc"><strong>Kommt Bald</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section style="display:flex; justify-content:space-between; align-items:center; margin-top:12px">
+        <div style="color:var(--muted); font-size:14px">Falls du no Frage hesch -></div>
+        <div class="footer">
+          <button class="btn" id="contactBtn">Kontakt</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('contactBtn').addEventListener('click', ()=>{
+      const email = 'Indujanv.030108@gmail.com';
+      if(confirm('E-Mail an ' + email + ' öffnen?')){
+        window.location.href = 'mailto:' + email + '?subject=Anfrage von Website';
+      }
+    });
+
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      document.querySelectorAll('.fade-in').forEach(el=> el.style.animation='none');
+    }
+  </script>
+  <script>
+const canvas = document.getElementById("hackingBackground");
+const ctx = canvas.getContext("2d");
+
+let w, h;
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
+const nodes = [];
+const nodeCount = 80;
+for (let i = 0; i < nodeCount; i++) {
+  nodes.push({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    vx: (Math.random() - 0.5) * 0.6,
+    vy: (Math.random() - 0.5) * 0.6,
+  });
+}
+
+function draw() {
+  ctx.clearRect(0, 0, w, h);
+  // sanfter Hintergrundschimmer
+  ctx.fillStyle = "rgba(15, 23, 36, 0.9)";
+  ctx.fillRect(0, 0, w, h);
+
+  // Verbindungslinien
+  for (let i = 0; i < nodeCount; i++) {
+    for (let j = i + 1; j < nodeCount; j++) {
+      const dx = nodes[i].x - nodes[j].x;
+      const dy = nodes[i].y - nodes[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 130) {
+        ctx.strokeStyle = `rgba(124, 92, 255, ${(1 - dist / 130) * 0.3})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(nodes[i].x, nodes[i].y);
+        ctx.lineTo(nodes[j].x, nodes[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+
+  // Punkte
+  for (let i = 0; i < nodeCount; i++) {
+    const n = nodes[i];
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(57,185,255,0.8)";
+    ctx.fill();
+
+    n.x += n.vx;
+    n.y += n.vy;
+    if (n.x < 0 || n.x > w) n.vx *= -1;
+    if (n.y < 0 || n.y > h) n.vy *= -1;
+  }
+
+  requestAnimationFrame(draw);
+}
+draw();
+
+// Canvas hinter allem platzieren
+canvas.style.position = "fixed";
+canvas.style.top = "0";
+canvas.style.left = "0";
+canvas.style.width = "100%";
+canvas.style.height = "100%";
+canvas.style.zIndex = "-1";
+canvas.style.pointerEvents = "none";
+</script>
+
+<!-- Consent Overlay + Banner -->
+<div id="overlay" style="
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.6); display:none; opacity:0; z-index:9998;
+  transition: opacity 0.3s ease;
+"></div>
+
+<div id="popup" style="
+  position:fixed; top:50%; left:50%; transform:translate(-50%, -50%) translateY(30px);
+  background:#0b1220; color:#e6eef8; padding:24px; border-radius:14px;
+  max-width:420px; width:90%; display:none; opacity:0; z-index:9999;
+  box-shadow:0 10px 40px rgba(0,0,0,0.6);
+  transition: opacity 0.3s ease, transform 0.45s cubic-bezier(.2,.8,.2,1);
+">
+  <h3>Terms of Data Collection</h3>
+  <p>
+    By clicking <strong>"Accept"</strong>, you consent to the collection of data
+    such as IP address or device details, especially when using the contact form.
+    These informations will be logged only for security purposes!
+  </p>
+  <a href="datenschutz.html" style="color:#7c5cff; text-decoration:none; display:block; margin:12px 0;">Datenschutzerklärung</a>
+  <div style="display:flex; gap:12px; margin-top:16px;">
+    <button id="acceptBtn" style="
+      flex:1; padding:10px; background:#7c5cff; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:600;">
+      Accept
+    </button>
+    <button id="declineBtn" style="
+      flex:1; padding:10px; background:transparent; color:#94a3b8; border:1px solid #1e293b; border-radius:8px; cursor:pointer; font-weight:600;">
+      Decline
+    </button>
+  </div>
+</div>
+
+<script>
+window.onload = function() {
+  const lastPopupTime = localStorage.getItem("lastPopupTime");
+
+  // Popup nur alle 10 Minuten oder erstmalig anzeigen
+  if (!lastPopupTime || (Date.now() - lastPopupTime) > 10*60*1000) {
+    const popup = document.getElementById("popup");
+    const overlay = document.getElementById("overlay");
+
+    // Banner & Overlay einblenden
+    popup.style.display = "block";
+    overlay.style.display = "block";
+    setTimeout(() => {
+      popup.style.opacity = "1";
+      popup.style.transform = "translate(-50%, -50%) translateY(0)";
+      overlay.style.opacity = "1";
+    }, 50);
+
+    // Scroll verhindern
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+
+    // Accept Button
+    document.getElementById("acceptBtn").addEventListener("click", function() {
+      popup.style.opacity = "0";
+      popup.style.transform = "translate(-50%, -50%) translateY(30px)";
+      overlay.style.opacity = "0";
+      localStorage.setItem("lastPopupTime", Date.now());
+
+      setTimeout(function() {
+        popup.style.display = "none";
+        overlay.style.display = "none";
+        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflow = 'auto';
+      }, 300);
+    });
+
+    // Decline Button
+    document.getElementById("declineBtn").addEventListener("click", function() {
+      window.location.href = "https://www.google.com";
+      document.body.style.overflow = 'auto';
+      document.documentElement.style.overflow = 'auto';
+    });
+  }
+};
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Projekte – Indujan Vijarajah</title>
+  <meta name="description" content="Projekte von Indujan Vijarajah – ESP32 Marauder, Blue Jammer und mehr.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    :root {
+      --bg: #0f1724;
+      --card: #0b1220;
+      --muted: #94a3b8;
+      --accent: #7c5cff;
+      --glass: rgba(255, 255, 255, 0.04);
+      --radius: 14px;
+      --maxw: 1100px;
+      --gap: 24px;
+      --ff: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+        html, body {
+      overscroll-behavior: none;
+    }
+
+    *{box-sizing:border-box}
+   html {
+    height: auto;
+    min-height: 100%;
+    background: linear-gradient(180deg, var(--bg), #071024 140%);
+  }
+
+  body {
+    min-height: 100vh;
+    background: none;
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px;
+    color: #e6eef8;
+    font-family: var(--ff);
+  }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--maxw);
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: var(--gap);
+    }
+
+   
+    .sidebar {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      padding: 28px;
+      border-radius: var(--radius);
+      box-shadow: 0 6px 30px rgba(2, 6, 23, 0.6);
+    }
+
+    .avatar{width:96px; height:96px; object-fit: cover; border-radius: 16px;}
+    .avatar img {width: 100%; height: 100%; object-fit: cover; border-radius: 16px;}
+
+    .name {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 6px
+    }
+
+    .role {
+      color: var(--muted);
+      margin: 0 0 16px
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .tag {
+      padding: 6px 10px;
+      background: var(--glass);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    .sidebar hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.03));
+      margin: 18px 0
+    }
+
+    .meta {
+      display: flex;
+      gap: 10px;
+      flex-direction: column
+    }
+
+    .meta-item {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 14px
+    }
+
+    nav {
+      margin-top: 20px;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 15px;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    nav a.active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* MAIN */
+    .main {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .hero {
+      padding: 26px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      border-radius: var(--radius);
+      box-shadow: 0 6px 30px rgba(2, 6, 23, 0.45);
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 22px;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* Projekte */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .project {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0.02));
+      border-radius: 12px;
+      box-shadow: 0 4px 18px rgba(2, 6, 23, 0.55);
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(2, 6, 23, 0.65);
+    }
+
+    .project img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .project-content {
+      padding: 14px;
+    }
+
+    .project .title {
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .project .desc {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width:980px) {
+      .wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .projects {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width:600px) {
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      .avatar {
+        width: 74px;
+        height: 74px;
+        font-size: 22px;
+      }
+    }
+
+    /* ANIMATION */
+    .fade-in {
+      animation: fadeIn .7s ease both;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="starsBackground"></canvas>
+  <div class="wrap">
+    <!-- Sidebar -->
+    <aside class="sidebar fade-in">
+      <div class="avatar" ><img src="favicon.png" alt="Avatar"></div>
+      <h2 class="name">Indujan Vijayarajah</h2>
+      <div class="role">Ethische Hacking · Freak</div>
+      <div class="tags">
+        <div class="tag">ESP32</div>
+        <div class="tag">Marauder</div>
+        <div class="tag">Jammer</div>
+        <div class="tag">PCB</div>
+        <div class="tag">3D-Druck</div>
+      </div>
+
+      <hr />
+      <div class="meta">
+        <div class="meta-item"><span>Standort</span><strong>Zürich, CH</strong></div>
+        <div class="meta-item"><span>Kontakt</span><strong>Indujanv.030108@gmail.com</strong></div>
+      </div>
+
+      <hr />
+      <nav>
+        <a href="index.html">Startseite</a>
+        <a href="ueber-mich.html">Über mich</a>
+        <a href="leistungen.html">Leistungen</a>
+        <a href="meine-projekte.html" class="active">Projekte</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+      <section class="hero fade-in">
+        <h1>Projekte</h1>
+        <p>Hier findest du eine Auswahl aktueller und vergangener Arbeiten von anderen die ich nachgebaut habe.</p>
+      </section>
+
+      <section>
+        <div class="projects">
+          <div class="project fade-in">
+            <img src="Bilder/Marauder.jpg" alt="ESP32 Marauder Projekt">
+            <div class="project-content">
+              <div class="title">ESP32 Marauder -
+                JustCallMeKoko
+              </div>
+              <div class="desc">Ein Open-Source Tool für das ESP32-Board mit Netzwerk-Scan, Packet-Monitor und
+                Protokollanalyse von JustCallMeKoko.</div>
+            </div>
+          </div>
+
+          <div class="project fade-in">
+            <img src="Bilder/bluejammer.jpg" alt="ESP32 Blue Jammer Projekt">
+            <div class="project-content">
+              <div class="title">ESP32 Blue Jammer - Emensta</div>
+              <div class="desc">Ein Bluetooth-Analyse-Projekt zur Untersuchung von Reichweite und Verbindung – zu
+                Lernzwecken von Emensta.</div>
+            </div>
+          </div>
+
+          <div class="project fade-in">
+            <img src="Bilder/WiFiX.jpg" alt="Neues Projekt bald verfügbar">
+            <div class="project-content">
+              <div class="title">WiFiX-DualBand-Deauther - Emensta & ASP-29</div>
+              <div class="desc">Ein leistungsstarkes Werkzeug, mit dem Sie Deauthentifizierungsangriffe auf sowohl 2,4-GHz- als auch 5,8-GHz-WiFi-Bänder durchführen können. Von Emensta & ASP-29</div>
+            </div>
+          </div>
+
+          <div class="project fade-in">
+            <img src="Bilder/nRF_BOX.jpg" alt="Neues Projekt bald verfügbar">
+            <div class="project-content">
+              <div class="title">NRF Box - CiferTech</div>
+              <div class="desc">Die nRF-Box von CiferTech ist ein kompaktes Open-Source-Wireless-Toolkit zur Analyse des 2,4-GHz-Funkbands. Auf Basis eines ESP32 und mehrerer NRF24-Module ermöglicht sie das Scannen und Untersuchen von Wi-Fi-, Bluetooth/BLE- und anderen 2,4-GHz-Signalen, inklusive Emulation und Forschungsfunktionen für Protokoll- und Security-Analysen. Sie richtet sich an Entwickler und Security-Forscher und ist für legale, autorisierte Test- und Lernzwecke konzipiert.</div>
+            </div>
+          </div>
+
+          <div class="project fade-in">
+            <img src="Bilder/BP.jpg" alt="Neues Projekt bald verfügbar">
+            <div class="project-content">
+              <div class="title">Bruce Project - Pr3y</div>
+              <div class="desc">Das Bruce Project von PR3Y ist ein kompaktes Security- und Funk-Research-Tool mit IR, RF-Cloning und -Emulation, CC1101, NRF24, WiFi/Bluetooth, NFC-Scan und GPS. Es dient der Analyse und Emulation drahtloser Systeme und ist für legale, autorisierte Test- und Lernzwecke ausgelegt.</div>
+            </div>
+          </div>
+
+          <div class="project fade-in">
+            <img src="Bilder/EMP.png" alt="Neues Projekt bald verfügbar">
+            <div class="project-content">
+              <div class="title">EMP Jammer DIY</div>
+              <div class="desc"><strong>Kommt Bald</strong> Stört Bildschirm mit Strom und Kupferdraht</div>
+            </div>
+          </div>
+
+          <div class="project fade-in">
+            <img src="Bilder/BadUSB.jpg" alt="Neues Projekt bald verfügbar">
+            <div class="project-content">
+              <div class="title">Bad USB DIY</div>
+              <div class="desc"><strong>Kommt Bald</strong> Ein USB mit Raspberry Pi Pico</div>
+            </div>
+          </div>
+
+          <div class="project fade-in">
+            <img src="Bilder/USBKiller.jpg" alt="Neues Projekt bald verfügbar">
+            <div class="project-content">
+              <div class="title">USB-Killer DIY</div>
+              <div class="desc"><strong>Kommt Bald</strong> Ein USB frittiert alle Geräten mit USB-A anschluss (Stromschlag)</div>
+            </div>
+          </div>
+
+          <div class="project fade-in">
+            <img src="Bilder/CyberDeck.jpg" alt="Neues Projekt bald verfügbar">
+            <div class="project-content">
+              <div class="title">CyberDeck DIY</div>
+              <div class="desc"><strong>Kommt Bald</strong> Eigene Laptop mit Raspberry Pi 5</div>
+            </div>
+          </div>
+
+          <div class="project fade-in">
+            <img src="Bilder/CyberDeck.jpg" alt="Neues Projekt bald verfügbar">
+            <div class="project-content">
+              <div class="title">HomeLab DIY</div>
+              <div class="desc"><strong>Kommt Bald</strong> HomeLab mit Raspberry PI 5</div>
+            </div>
+          </div>
+
+          <div class="project fade-in">
+            <img src="comingsoon.jpg" alt="Neues Projekt bald verfügbar">
+            <div class="project-content">
+              <div class="title">Kommt Weitere</div>
+              <div class="desc"><strong>Kommt Bald</strong></div>
+            </div>
+          </div>
+
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Barrierefreiheit: Animationen deaktivieren bei "reduce motion"
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.fade-in').forEach(el => el.style.animation = 'none');
+    }
+  </script>
+
+  <script>
+    const canvas = document.getElementById("starsBackground");
+    const ctx = canvas.getContext("2d");
+    let w, h, stars = [];
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    // Sternenklasse
+    class Star {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.size = Math.random() * 1.4 + 0.2;
+        this.speed = Math.random() * 0.3 + 0.05;
+        this.opacity = Math.random() * 0.7 + 0.3;
+        this.color = Math.random() > 0.5 ? "rgba(124,92,255," + this.opacity + ")" : "rgba(57,185,255," + this.opacity + ")";
+      }
+      update() {
+        this.y += this.speed;
+        if (this.y > h) {
+          this.y = 0;
+          this.x = Math.random() * w;
+        }
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.shadowColor = this.color;
+        ctx.shadowBlur = 8;
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 180; i++) stars.push(new Star());
+
+    function animate() {
+      ctx.fillStyle = "rgba(15, 23, 36, 0.35)"; // leichter Nachleuchteffekt
+      ctx.fillRect(0, 0, w, h);
+      stars.forEach(s => { s.update(); s.draw(); });
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Canvas Styling (hinter allen Elementen)
+    canvas.style.position = "fixed";
+    canvas.style.top = "0";
+    canvas.style.left = "0";
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    canvas.style.zIndex = "-1";
+    canvas.style.pointerEvents = "none";
+  </script>
+
+</body>
+
+</html>

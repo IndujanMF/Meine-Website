@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Terms of Data Collection</title>
+
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --text:#e6eef8;
+      --muted:#94a3b8;
+      --accent:#7c5cff;
+      --radius:14px;
+      --maxw:900px;
+      --ff:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      min-height:100vh;
+      background: linear-gradient(180deg, var(--bg), #071024 140%);
+      color:var(--text);
+      font-family:var(--ff);
+      display:flex;
+      justify-content:center;
+      padding:60px 20px;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--maxw);
+      display:flex;
+      flex-direction:column;
+      gap:24px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow:0 6px 30px rgba(2,6,23,0.5);
+      animation:fadeIn .6s ease;
+    }
+
+    h1,h2{
+      margin-top:0;
+    }
+
+    h1{
+      font-size:28px;
+    }
+
+    h2{
+      font-size:22px;
+      margin-bottom:10px;
+    }
+
+    p, li{
+      color:var(--muted);
+      line-height:1.6;
+      font-size:15px;
+    }
+
+    ul{
+      padding-left:18px;
+    }
+
+    .lang-label{
+      font-size:13px;
+      color:var(--accent);
+      letter-spacing:.04em;
+      margin-bottom:6px;
+    }
+
+    .back{
+      text-decoration:none;
+      color:var(--accent);
+      font-size:14px;
+      align-self:flex-start;
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0; transform:translateY(8px)}
+      to{opacity:1; transform:none}
+    }
+
+    @media(max-width:600px){
+      h1{font-size:24px}
+      h2{font-size:20px}
+      .card{padding:22px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <a class="back" href="index.html">← Back to Website</a>
+
+    <div class="card">
+      <h1>Terms of Data Collection</h1>
+      <p>
+        This page explains how technical data is processed when visiting this website.
+        The information below is provided in German and English.
+      </p>
+    </div>
+
+    <!-- DEUTSCH -->
+    <div class="card">
+      <div class="lang-label">🇩🇪 DEUTSCH</div>
+      <h2>Datenerfassung & Datenschutz</h2>
+
+      <p>
+        Beim Besuch dieser Website werden automatisch technische Zugriffsdaten
+        verarbeitet. Diese Daten sind technisch erforderlich, um die Website
+        sicher und stabil bereitzustellen.
+      </p>
+
+      <ul>
+        <li>IP-Adresse</li>
+        <li>Datum und Uhrzeit des Zugriffs</li>
+        <li>Browser- und Geräteinformationen</li>
+      </ul>
+
+      <p>
+        Die Verarbeitung dieser Daten erfolgt ausschließlich zu
+        <strong>Sicherheitszwecken</strong>,
+        insbesondere zur Erkennung und Abwehr von Angriffen oder Missbrauch.
+      </p>
+
+      <p>
+        Die Rechtsgrundlage für die Verarbeitung ist
+        <strong>Art. 6 Abs. 1 lit. f DSGVO</strong>
+        (berechtigtes Interesse an der Sicherheit dieser Website).
+      </p>
+
+      <p>
+        Es findet kein Tracking, keine Analyse und keine Weitergabe der Daten
+        an Dritte zu Marketingzwecken statt.
+      </p>
+    </div>
+
+    <!-- ENGLISH -->
+    <div class="card">
+      <div class="lang-label">🇬🇧 ENGLISH</div>
+      <h2>Data Collection & Privacy</h2>
+
+      <p>
+        When visiting this website, technical access data is automatically
+        processed. This data is technically necessary to ensure the security
+        and stability of the website.
+      </p>
+
+      <ul>
+        <li>IP address</li>
+        <li>Date and time of access</li>
+        <li>Browser and device information</li>
+      </ul>
+
+      <p>
+        This data is processed exclusively for
+        <strong>security purposes</strong>,
+        such as preventing abuse or malicious attacks.
+      </p>
+
+      <p>
+        The legal basis for processing is
+        <strong>Art. 6(1)(f) GDPR</strong>
+        (legitimate interest in securing this website).
+      </p>
+
+      <p>
+        No tracking, analytics, or marketing-related data processing is performed.
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>
